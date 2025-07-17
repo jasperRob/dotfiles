@@ -1,0 +1,59 @@
+# i3blocks configuration file
+#
+# The i3blocks man page describes the usage of the binary,
+# and its website describes the configuration:
+#
+#     https://vivien.github.io/i3blocks
+
+# Global properties
+separator=true
+separator_block_width=40
+
+[greetings]
+command=echo "$USER"
+interval=once
+color=#babbf1 # lavender
+
+[config]
+full_text=config
+command=./open_config.sh
+color=#f2d5cf # rosewater
+
+[CPU]
+command=./cpu.sh
+interval=5
+
+[Memory]
+command=./mem.sh
+interval=5
+
+[Disk]
+command=./disk.sh
+interval=30
+
+[wifi]
+command=./wifi_status.sh
+interval=5
+
+[mute]
+command=./mute.sh
+interval=once
+signal=10
+
+[micmute]
+command=./micmute.sh
+interval=once
+signal=10
+
+[volume]
+command=./volume.sh
+interval=once
+signal=10
+
+[battery]
+command=./battery.sh
+interval=10
+
+[time]
+command=date '+%d-%m-%Y %H:%M:%S'
+interval=1
