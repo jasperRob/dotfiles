@@ -1,0 +1,18 @@
+[general]
+import = [ "~/.config/alacritty/themes/nord.toml" ]
+
+[env]
+TERM = "xterm-256color"
+
+[window]
+option_as_alt = "Both"
+decorations = "None"
+dynamic_padding = true
+padding = { x = 0, y = 0}
+
+[font]
+normal = { family = "CaskaydiaMono Nerd Font", style = "Regular" }
+bold = { family = "CaskaydiaMono Nerd Font", style = "Bold" }
+italic = { family = "CaskaydiaMono Nerd Font", style = "Italic" }
+size = 12
+
