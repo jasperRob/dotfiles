@@ -8,6 +8,7 @@ $DOTFILES_DIR/zsh/.zshrc|$HOME/.zshrc
 $DOTFILES_DIR/alacritty/mac/alacritty.toml|$HOME/.config/alacritty/alacritty.toml
 $DOTFILES_DIR/starship/starship.toml|$HOME/.config/starship.toml
 $DOTFILES_DIR/tmux/.tmux.conf|$HOME/.tmux.conf
+$DOTFILES_DIR/tmux/tmux-session-style.sh|$HOME/tmux-session-style.sh
 $DOTFILES_DIR/aerospace/.aerospace.toml|$HOME/.aerospace.toml
 "
 
