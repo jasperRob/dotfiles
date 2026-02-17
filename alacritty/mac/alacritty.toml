@@ -1,5 +1,6 @@
 [general]
 import = [ "~/.config/alacritty/themes/nord.toml" ]
+live_config_reload = true
 
 [env]
 TERM = "xterm-256color"

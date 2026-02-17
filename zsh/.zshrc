@@ -19,6 +19,22 @@ bindkey -v
 # Allow backspace to delete past the point where insert mode was entered
 bindkey -M viins '^?' backward-delete-char
 
+# Yank to system clipboard (yy in normal mode)
+function vi-yank-whole-line-clip {
+    zle vi-yank-whole-line
+    echo -n "$CUTBUFFER" | pbcopy
+}
+zle -N vi-yank-whole-line-clip
+bindkey -M vicmd 'yy' vi-yank-whole-line-clip
+
+# Yank to system clipboard (y in visual mode)
+function vi-yank-clip {
+    zle vi-yank
+    echo -n "$CUTBUFFER" | pbcopy
+}
+zle -N vi-yank-clip
+bindkey -M visual 'y' vi-yank-clip
+
 # Load or source configs
 load() {
   case "$1" in
@@ -71,10 +87,12 @@ alias gm="git merge"
 alias gsta="git stash"
 alias gstp="git stash pop"
 
-
 # Directories
 alias _k="cd ~/src/kogan/K3"
 alias _j="cd ~/src/jasperRob"
+
+# Nvim configs
+alias nvim-lazyvim="NVIM_APPNAME=nvim-lazyvim nvim"
 
 # Executables
 export PATH="$HOME/bin:$PATH"
@@ -103,3 +121,20 @@ export PATH="$PATH:$HOME/.lmstudio/bin"
 # Added by Antigravity
 export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/jasper.robison/.lmstudio/bin"
+# End of LM Studio CLI section
+
+# Amp CLI
+export PATH="/Users/jasper.robison/.amp/bin:$PATH"
+
+# Terraform
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/jasper.robison/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/jasper.robison/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/jasper.robison/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jasper.robison/google-cloud-sdk/completion.zsh.inc'; fi
