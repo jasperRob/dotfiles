@@ -56,14 +56,15 @@ edit() {
     tmux)       file_path=~/.tmux.conf ;;
     neovim|nvim) file_path=~/.config/nvim/init.lua ;;
     aerospace)  file_path=~/.aerospace.toml ;;
-    *)          echo "Usage: edit <zsh|alacritty|starship|tmux|neovim|aerospace>" && return 1 ;;
+    worktrunk|wt)  file_path=~/.config/wt.toml ;;
+    *)          echo "Usage: edit <zsh|alacritty|starship|tmux|neovim|aerospace|worktrunk>" && return 1 ;;
   esac
   
   # cd to directory and open file
   cd "$(dirname "$file_path")" && nvim "$(basename "$file_path")"
 }
 # Auto-completion for edit
-compdef '_values "config types" zsh tmux alacritty starship neovim aerospace' edit
+compdef '_values "config types" zsh tmux alacritty starship neovim aerospace worktrunk' edit
 
 # Common functions
 alias ls="eza -lh --group-directories-first --icons=auto"
@@ -107,9 +108,6 @@ fi
 export EDITOR="nvim"
 export VISUAL="nvim"
 
-# Init prompt
-eval "$(starship init zsh)"
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
@@ -138,3 +136,9 @@ if [ -f '/Users/jasper.robison/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/jasper.robison/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jasper.robison/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Init prompt
+eval "$(starship init zsh)"
+
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi

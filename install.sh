@@ -8,8 +8,8 @@ $DOTFILES_DIR/zsh/.zshrc|$HOME/.zshrc
 $DOTFILES_DIR/alacritty/mac/alacritty.toml|$HOME/.config/alacritty/alacritty.toml
 $DOTFILES_DIR/starship/starship.toml|$HOME/.config/starship.toml
 $DOTFILES_DIR/tmux/.tmux.conf|$HOME/.tmux.conf
-$DOTFILES_DIR/tmux/tmux-session-style.sh|$HOME/tmux-session-style.sh
 $DOTFILES_DIR/aerospace/.aerospace.toml|$HOME/.aerospace.toml
+$DOTFILES_DIR/wt/wt.toml|$HOME/.config/wt.toml
 "
 
 echo "$links" | while IFS='|' read -r src dest; do
@@ -22,6 +22,12 @@ echo "$links" | while IFS='|' read -r src dest; do
   if [ -f "$dest" ] && [ ! -L "$dest" ]; then
     echo "Backing up: $dest -> ${dest}.bak"
     mv "$dest" "${dest}.bak"
+  fi
+
+  # Skip if symlink already points to the correct target
+  if [ -L "$dest" ] && [ "$(readlink "$dest")" = "$src" ]; then
+    echo "Skipped (already linked): $dest"
+    continue
   fi
 
   ln -sf "$src" "$dest"

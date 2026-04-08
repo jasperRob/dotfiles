@@ -1,0 +1,7 @@
+[post-create]
+copy = "wt step copy-ignored"
+install = "./dev_setup.sh full && ./dev_setup.sh service_up"
+
+[post-start]
+copy = "wt step copy-ignored"
+install = "./dev_setup.sh full && ./dev_setup.sh service_up"
